@@ -1,0 +1,269 @@
+.dark-purple {
+  color: #2D263F;
+}
+
+.light-purple {
+  color: #57438B;
+}
+
+.lighter-purple {
+  color: #9278D5;
+}
+
+.off-white {
+  color: #F2EDFF;
+}
+
+.light-grew {
+  color: #403F3A;
+}
+
+.dark-grey {
+  color: #2E2D27;
+}
+
+body {
+  padding-top: 70px;
+  margin: 0;
+  background-color: #2E2D27;
+  color: #ddd;
+  font-size: 16px;
+  font-family: "PT Mono";
+}
+
+a:focus, a:hover {
+    color: #2A9BFF;
+    text-decoration: underline;
+}
+
+ul {
+  -webkit-padding-start: 5px;
+  margin-left: 40px;
+}
+
+.container-fluid {
+  top: -19px;
+  position: relative;
+}
+
+.chal-desc {
+  margin-bottom: 40px;
+}
+
+.first-nav-item {
+  margin-left: 30px;
+}
+
+.navbar {
+  padding: 0 20px;
+  margin-bottom: 0;
+}
+
+.active-nav {
+  color: #fff;
+  background-color: #080808;
+}
+
+.editor {
+  height: 450px;
+  width: 100%;
+}
+
+.btn-container {
+  margin: 30px 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.my-btns {
+  color: black;
+  margin: 0 20px 0 0 ;
+}
+
+.form-btn {
+  margin: -10px 0 0 0;
+}
+
+.submit {
+  background-color: #49B249;
+}
+
+
+
+/* dashboard */
+
+.purple-container {
+    padding: 15px 20px 20px 20px;
+    margin: 40px 0;
+    background-color: #403F3A;
+    /*width: 500px;*/
+    border-style: solid;
+    border-width: 1px;
+    border-color: #55438B;
+  }
+
+.challenge-grid a {
+  color: #ddd;
+  box-shadow: inset 0 -2px 0 #57438B;
+  transition: background .15s cubic-bezier(.33,.66,.66,1);
+}
+
+.challenge-grid a:hover {
+  outline: 0;
+  background-color: #57438B;
+  text-decoration: none;
+}
+
+.challenge-header {
+  margin: 0 15px 15px 0;
+  color: #F2EDFF;
+}
+
+.col-header {
+  color: #aaa;
+}
+
+/* Challenges */
+.chal-panel {
+  height: 100vh;
+  background-color: #171717;
+  position: relative;
+  left: -15px;
+  top: -3px;
+}
+
+.chal-selector {
+  margin: 0 10px;
+}
+
+.chal-btn:hover {
+  color: #9278D5;
+  text-decoration: none;
+  background-color: #202020;
+}
+
+.test-cases-container {
+  padding-right:20px;
+  font-size: .8em;
+}
+
+.assert-false {
+  color: #cc2222;
+}
+
+.assert-true {
+  color: #22aa22;
+}
+
+.hint-link {
+    color: #CFCFCF;
+    padding: 1px 5px;
+    margin-top: 0px;
+    border-radius: 4px;
+    border-color: #CFCFCF;
+    border-width: 2px;
+    border-style: solid;
+    text-decoration: none;
+}
+
+.hint-link:hover {
+  text-decoration: none;
+  color: rgb(237, 237, 237);
+  border-color: rgb(237, 237, 237);
+}
+
+.case-row {
+  margin-bottom: 10px;
+}
+
+/* instructor dashboard */
+
+.challenge-form {
+  max-width: 700px;
+}
+
+.floater {
+  background-color: black;
+  display: block;
+  position: fixed;
+  max-height: 80vh;
+  z-index: 200;
+  padding: 15px;
+}
+
+.planner {
+  bottom: 10px;
+  right: 10px;
+}
+
+.notes-btns {
+    background-color: rgb(255,193,7);
+    color: rgb(70,70,70);
+    font-weight: bold;
+    margin-right: 18px;
+    transition: box-shadow .3s;
+}
+
+.form-label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+.date-time-picker-container {
+  margin-left: -15px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form-button-cancel {
+  background-color: #F2EDFF;
+  color: #57438B;
+  border-style: double;
+  border-color: #57438B;
+  border-width: 2px;
+  font-weight: bold;
+  margin-right: 18px;
+  transition: box-shadow .3s;
+}
+
+.form-button-ok {
+  background-color: #57438B;
+  color: #F2EDFF;
+  border-style: double;
+  border-color: #F2EDFF;
+  border-width: 2px;
+  font-weight: bold;
+  margin-right: 18px;
+  transition: box-shadow .3s;
+}
+
+.date-box {
+  background-color: black;
+}
+
+.sm-label {
+  font-weight: 400;
+}
+
+.hint-label {
+  margin-top:5px;
+}
+
+.hint-input {
+  margin-bottom: 15px;
+}
+
+.hint-section-form {
+  margin-left: 30px;
+}
+
+@meida only screen and (max-width: 960px) {
+  .page-container {
+    margin-top: 200px;
+  }
+}

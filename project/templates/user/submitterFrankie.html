@@ -1,0 +1,64 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
+<script src="https://cdn.jsdelivr.net/ace/1.2.3/min/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script src="{{ url_for('static', filename='js/asserts.js') }}"></script>
+<script src="{{ url_for('static', filename='js/js.cookie.js') }}"></script>
+<script src="{{ url_for('static', filename='js/cookie.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/submit.css') }}">
+<section>
+
+    <div id="one">
+        <h1>Enter your functions here</h1>
+        <div id="editor">def foo():
+              x = "Test"
+              return 1
+
+          def bar():
+
+              return [2, 1]
+        </div>
+
+        <script>
+            var editor = ace.edit("editor");
+            editor.$blockScrolling = Infinity
+            editor.setTheme("ace/theme/iplastic");
+            editor.getSession().setMode("ace/mode/python");
+            if (Cookies.get("code") != undefined){
+                editor.setValue(Cookies.get("code"), 1)
+            }
+        </script>
+
+        <div>
+            <button>Submit</button>
+            <select name="datalist" id="datalist">
+                <option value="0">None</option>
+                <option value="1">test1</option>
+                <option value="2">test2</option>
+                <option value="3">test3</option>
+            </select>
+        </div>
+    </div>
+    <br><br><br>
+    <div id="two">
+        <br>
+            <table id="assert_table">
+                <tr>
+                </tr>
+            </table>
+            <div id="hints"></div>
+    </div>
+</section>
+<br><br><br>
+
+
+
+
+
+
+
+{% endblock %}
