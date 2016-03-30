@@ -44,7 +44,6 @@ class User(db.Model):
 
 class Submission(db.Model):
 
-
     __tablename__ = "submissions"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -68,6 +67,18 @@ class Submission(db.Model):
     def __repr__(self):
         return self.code
 
+class Cat(db.Model):
+    __tablename__ = 'cats'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), unique=True, default='Snowball')
+    weight = db.Column(db.SmallInteger, nullable=True)
+
+    def __init__(self, name, email):
+        self.name = name
+        self.weight = weight
+
+    def __repr__(self):
+        return '<Cat %r>' % self.name
 
 
 class Assert(db.Model):
