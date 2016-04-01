@@ -40,7 +40,7 @@ class User(db.Model):
         return self.id
 
     def __repr__(self):
-        return '<email {}'.format(self.email)
+        return '<email {}>'.format(self.email)
 
 class Submission(db.Model):
 
@@ -69,16 +69,31 @@ class Submission(db.Model):
 
 class Cat(db.Model):
     __tablename__ = 'cats'
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True, default='Snowball')
     weight = db.Column(db.SmallInteger, nullable=True)
 
-    def __init__(self, name, email):
+    def __init__(self, name):
         self.name = name
-        self.weight = weight
+        # self.weight = weight
 
     def __repr__(self):
         return '<Cat %r>' % self.name
+
+class Challenge(db.Model):
+    __tablename__ = 'challenges'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), unique=True)
+
+
+    def __init__(self, name):
+        self.name = name
+
+
+    def __repr__(self):
+        return '<Challenge %r>' % self.name
 
 
 class Assert(db.Model):
