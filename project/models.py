@@ -81,16 +81,66 @@ class Cat(db.Model):
     def __repr__(self):
         return '<Cat %r>' % self.name
 
+class Course(db.Model):
+    __tablename__ = "courses"
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80))
+    challenges = db.relationship('Challenge', backref='course', lazy='dynamic')
+    #students ::: add this later after you get the basics working.
+
+    def __init__(self, name):
+        self.name = name
+
+    def __repr__(self):
+        return '<Course Name: %r>' % self.name
+
 class Challenge(db.Model):
     __tablename__ = 'challenges'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True)
+    description = db.Column(db.Text, unique=True, nullable=True)
+    dueDate = db.Column(db.DateTime, nullable=True)
+    codeText = db.Column(db.Text,nullable=True)
+    testCases = db.Column(db.PickleType)
+    course_id = db.Column(db.Integer, db.ForeignKey('courses.id'))
+
+    # def __init__(self, name, description):
+    #     self.name = name
+    #     self.description = description
+    #     self.testCases = {}
+
+    def addTestCase(self, assertion, hint):
+
+        testCase = {}
+        caseNumber = len(self.testCases) + 1
+
+        # populate test case with name, assertion, and hint
+        testCase['name'] = 'Test Case %d' % caseNumber
+        testCase['assertion'] = assertion
+        testCase['hint'] = hint
+
+        # add to ordered test case list
+        if len(self.testCases) == 0:
+            print "no previous test cases"
+            testCases = []
+
+        else:
+            print "There were indeed some previus test cases."
+            testCases = self.testCases
+
+        testCases.append(testCase)
+        self.testCases = testCases
 
 
-    def __init__(self, name):
-        self.name = name
+    def addDueDate(self, year, month, day):
+        self.dueDate = datetime.date(year, month, day)
 
+    def addCodeText(self, codefile):
+        codefile = open(codefile)
+        text = codefile.read()
+        self.codeText = text
 
     def __repr__(self):
         return '<Challenge %r>' % self.name

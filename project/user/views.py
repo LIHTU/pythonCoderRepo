@@ -50,7 +50,6 @@ with open('data_sets/test4.csv') as f:
 
 user_blueprint = Blueprint('user', __name__,)
 
-
 ################
 #### routes ####
 ################
@@ -166,6 +165,18 @@ def submit():
 def submitter():
     # removed lines here so we don't call Frankie
     return render_template('user/submitter.html')
+
+@user_blueprint.route('/dashboard', methods=['GET', 'POST'])
+@login_required
+@check_confirmed
+def dashboard():
+    return render_template('user/dashboard.html')
+
+@user_blueprint.route('/instructor_dash', methods=['GET', 'POST'])
+@login_required
+@check_confirmed
+def instructor_dash():
+    return render_template('user/instructor_dash.html')
 
 
 @user_blueprint.route('/submissions.txt', methods=['GET'])
