@@ -1,12 +1,10 @@
 # project/user/forms.py
 
-
 from flask_wtf import Form
-from wtforms import TextField, PasswordField
-from wtforms.validators import DataRequired, Email, Length, EqualTo
+from wtforms import TextField, PasswordField, StringField, DateTimeField, FileField, SelectMultipleField, SubmitField
+from wtforms.validators import DataRequired, Email, Length, EqualTo, Required, Optional
 
 from project.models import User
-
 
 class LoginForm(Form):
     email = TextField('email', validators=[DataRequired(), Email()])
@@ -52,3 +50,16 @@ class ChangePasswordForm(Form):
             EqualTo('password', message='Passwords must match.')
         ]
     )
+
+class TestCaseForm(Form):
+    assertion = StringField("Enter Assertion Here", validators=[Required()])
+    hint = StringField("Enter a hint", validators=[Optional()])
+
+class ChallengeForm(Form):
+    name = StringField("Challenge Name", validators=[Required()])
+    description = TextField("Challenge Description", validators=[Required()])
+    dueDate = DateTimeField("Due Date", validators=[Required()])
+    codeText = FileField("Initial Code Text", validators=[Optional()])
+    # testCases = ??? PickleType?  maybe use formField; each case would be new instance testCase form class; how does FormField work?
+    course_id = SelectMultipleField("Choose a Course", validators=[Required()])
+    submit = SubmitField("Submit")

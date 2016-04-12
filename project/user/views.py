@@ -11,13 +11,14 @@ from flask import render_template, Blueprint, url_for, \
     redirect, flash, request, jsonify, send_from_directory, make_response
 from flask.ext.login import login_user, logout_user, \
     login_required, current_user
+# from flask.ext.bootstrap import Bootstrap
 
 from project.models import User, Assert, Submission
 from project.email import send_email
 from project.token import generate_confirmation_token, confirm_token
 from project.decorators import check_confirmed
 from project import db, bcrypt
-from .forms import LoginForm, RegisterForm, ChangePasswordForm
+from .forms import LoginForm, RegisterForm, ChangePasswordForm, ChallengeForm, TestCaseForm
 
 from RestrictedPython import compile_restricted
 from RestrictedPython.Guards import safe_builtins
@@ -176,7 +177,9 @@ def dashboard():
 @login_required
 @check_confirmed
 def instructor_dash():
-    return render_template('user/instructor_dash.html')
+    chalForm = ChallengeForm(request.form)
+
+    return render_template('user/instructor_dash.html', form=chalForm)
 
 
 @user_blueprint.route('/submissions.txt', methods=['GET'])
