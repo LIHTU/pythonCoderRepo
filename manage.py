@@ -92,4 +92,4 @@ manager.add_command("shell", Shell(make_context=make_shell_context))
 
 
 if __name__ == '__main__':
-    manager.run(host='0.0.0.0')
+    manager.run()
