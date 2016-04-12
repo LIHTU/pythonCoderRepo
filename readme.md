@@ -30,10 +30,10 @@ $ python manage.py db migrate
 $ python manage.py create_admin
 ```
 
-### Run
+### Run for external viewing
 
 ```sh
-$ python manage.py runserver
+$ python manage.py runserver --host='0.0.0.0'
 ```
 
 ### Testing

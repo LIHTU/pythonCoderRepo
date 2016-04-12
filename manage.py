@@ -83,7 +83,7 @@ def create_admin():
 def run():
    socketio.run(flask.current_app,
                 host='0.0.0.0',
-                port=5001,
+                port=5000,
                 use_reloader=False)
 
 def make_shell_context():
