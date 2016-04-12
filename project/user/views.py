@@ -22,15 +22,12 @@ from .forms import LoginForm, RegisterForm, ChangePasswordForm, ChallengeForm, T
 
 from RestrictedPython import compile_restricted
 from RestrictedPython.Guards import safe_builtins
-from twilio.rest import TwilioRestClient
 import csv
 import traceback
 import json
 import sys
 safe_builtins['type'] = type
 safe_builtins['list'] = list
-
-client = TwilioRestClient('AC0abd43e102a79cddd31560b28f042c6e', '5c6c35713fdbb13f1c0f1ebfe2090a70')
 
 
 
