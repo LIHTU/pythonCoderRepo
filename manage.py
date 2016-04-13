@@ -6,7 +6,7 @@ import unittest
 import coverage
 import datetime
 
-from flask.ext.script import Manager
+from flask.ext.script import Manager, Shell
 from flask.ext.migrate import Migrate, MigrateCommand
 
 COV = coverage.coverage(
@@ -83,8 +83,12 @@ def create_admin():
 def run():
    socketio.run(flask.current_app,
                 host='0.0.0.0',
-                port=5001,
+                port=5000,
                 use_reloader=False)
+
+def make_shell_context():
+    return dict(app=app, db=db, User=User)
+manager.add_command("shell", Shell(make_context=make_shell_context))
 
 
 if __name__ == '__main__':

@@ -1,0 +1,134 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
+<script src="https://cdn.jsdelivr.net/ace/1.2.3/min/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script src="{{ url_for('static', filename='js/asserts.js') }}"></script>
+<script src="{{ url_for('static', filename='js/js.cookie.js') }}"></script>
+<script src="{{ url_for('static', filename='js/cookie.js') }}"></script>
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+<!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/submit.css') }}"> -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles_2.css') }}">
+<section>
+
+<!-- Planning Floater -->
+<div class="planner floater" id="floatingPlanner">
+  <h3>Planning Notes</h3>
+  <p>
+    add test cases and hints; add id to container to grab it with js.
+  </p>
+  <button type="button" id="closeFloater" class="btn notes-btns">Close</button>
+</div>
+
+<div class="page-container container-fluid">
+  <div class="row">
+    <div class="col-xs-2 chal-panel">
+      <!-- Challenge panel on left -->
+      <div class="chal-selector" id="chalSelectBox">
+        <h3>Challenges</h3>
+        <div class="btn lighter-purple chal-btn">
+          Challenge 1
+        </div>
+        <div class="btn lighter-purple chal-btn">
+          Challenges 2
+        </div>
+        <div class="btn lighter-purple chal-btn">
+          Challenges 3
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-xs-10">
+      <!-- Coding workspace on right -->
+      <h3>Challenge Name</h3>
+      <p class="chal-desc">This is a challenge discription which describes, with details, the sorts of things a student is expected to produce in the code window featured below this here challenge description. The description won't be redundant at all. Instead, it will
+        be very descriptive and helpful. We like helpful descriptions.</p>
+      <div class="row">
+        <div class="col-xs-7">
+          <!-- Coding window -->
+          <div id="editor" class="editor py-editor">
+# 1 add U if string ends in I
+def op1(string):
+  if string[-1] == 'I':
+      return string + 'U'
+  else:
+      print "string doesn't end in 'I'."
+  return string
+
+# 2 double string content after M
+def op2(string):
+  x = string[1:]
+  return string + x
+          </div>
+
+          <div class="btn-container">
+            <button class="btn my-btns test-code"><strong>Test Code</strong></button>
+            <button class="btn my-btns submit"><strong>Submit Solution</strong></button>
+          </div>
+        </div
+        <div class="col-xs-5">
+          <div class="test-cases-container">
+            <h3>Test Cases</h3>
+            <div class="test-case-cont" id="testCaseDiv">
+
+              <div class="row case-row">
+                <div class="col-xs-8">
+                  <span class="test-case-text">assert op1("MIII") == MU;</span>
+                </div>
+                <div class="col-xs-4 col-lg-4 assert-true">
+                  True
+                </div>
+              </div>
+
+              <div class="row case-row">
+                <div class="col-xs-8">
+                  <span class="test-case-text">assert op2("MIII") == MIIIIII;</span>
+                </div>
+                <div class="col-xs-4 col-lg-2 assert-false">
+                  False
+                </div>
+                <div class="col-xs-4 col-lg-2">
+                  <a class="hint-link" href="">hint</a>
+                </div>
+              </div>
+
+              <div class="row case-row">
+                <div class="col-xs-8">
+                  <span class="test-case-text">assert op1("MIII") == MUUUU;</span>
+                </div>
+                <div class="col-xs-4 col-lg-2 assert-false">
+                  False
+                </div>
+                <div class="col-xs-4 col-lg-2">
+                  <a class="hint-link" href="">hint</a>
+                </div>
+              </div>
+            </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/tomorrow_night_eighties");
+    editor.getSession().setMode("ace/mode/python");
+  </script>
+</div>
+
+
+
+
+
+
+
+{% endblock %}

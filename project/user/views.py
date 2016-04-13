@@ -6,30 +6,29 @@
 #################
 
 import datetime
+import time
 
 from flask import render_template, Blueprint, url_for, \
     redirect, flash, request, jsonify, send_from_directory, make_response
 from flask.ext.login import login_user, logout_user, \
     login_required, current_user
+# from flask.ext.bootstrap import Bootstrap
 
-from project.models import User, Assert, Submission
+from project.models import User, Assert, Submission, Challenge
 from project.email import send_email
 from project.token import generate_confirmation_token, confirm_token
 from project.decorators import check_confirmed
 from project import db, bcrypt
-from .forms import LoginForm, RegisterForm, ChangePasswordForm
+from .forms import LoginForm, RegisterForm, ChangePasswordForm, ChallengeForm, TestCaseForm
 
 from RestrictedPython import compile_restricted
 from RestrictedPython.Guards import safe_builtins
-from twilio.rest import TwilioRestClient
 import csv
 import traceback
 import json
 import sys
 safe_builtins['type'] = type
 safe_builtins['list'] = list
-
-client = TwilioRestClient('AC0abd43e102a79cddd31560b28f042c6e', '5c6c35713fdbb13f1c0f1ebfe2090a70')
 
 
 
@@ -49,7 +48,6 @@ with open('data_sets/test4.csv') as f:
 ################
 
 user_blueprint = Blueprint('user', __name__,)
-
 
 ################
 #### routes ####
@@ -164,8 +162,35 @@ def submit():
 @login_required
 @check_confirmed
 def submitter():
-    # removed lines here so we don't call Frankie
     return render_template('user/submitter.html')
+
+@user_blueprint.route('/dashboard', methods=['GET', 'POST'])
+@login_required
+@check_confirmed
+def dashboard():
+    return render_template('user/dashboard.html')
+
+@user_blueprint.route('/instructor_dash', methods=['GET', 'POST'])
+@login_required
+@check_confirmed
+def instructor_dash():
+    chalForm = ChallengeForm()
+    print request.form
+    print "chalForm.name = " + str(chalForm.name)
+    if chalForm.validate_on_submit():
+        print "I've been validated!"
+        #date_object = datetime.datetime.strptime(chalForm.dueDate.data, '%m/%d/%Y')
+        #print(str(chalForm.dueDate))
+        challenge = Challenge(name = chalForm.name.data,
+        description = chalForm.description.data,
+        dueDate = chalForm.dueDate.data,
+        codeText = chalForm.codeText.data)
+
+        db.session.add(challenge)
+        db.session.commit()
+    print "not val"
+
+    return render_template('user/instructor_dash.html', form=chalForm)
 
 
 @user_blueprint.route('/submissions.txt', methods=['GET'])
