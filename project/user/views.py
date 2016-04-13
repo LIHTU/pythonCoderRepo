@@ -161,7 +161,6 @@ def submit():
 @login_required
 @check_confirmed
 def submitter():
-    # removed lines here so we don't call Frankie
     return render_template('user/submitter.html')
 
 @user_blueprint.route('/dashboard', methods=['GET', 'POST'])
