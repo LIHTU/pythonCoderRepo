@@ -61,5 +61,5 @@ class ChallengeForm(Form):
     dueDate = DateTimeField("Due Date", validators=[Required()])
     codeText = FileField("Initial Code Text", validators=[Optional()])
     # testCases = ??? PickleType?  maybe use formField; each case would be new instance testCase form class; how does FormField work?
-    course_id = SelectMultipleField("Choose a Course", validators=[Required()])
+    # course_id = SelectMultipleField("Choose a Course", validators=[Required()])
     submit = SubmitField("Submit")

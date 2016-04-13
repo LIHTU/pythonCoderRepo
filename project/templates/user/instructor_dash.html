@@ -50,11 +50,12 @@
     <div class="purple-container challenge-form">
       <h3>Create a New Challenge</h3>
       <form method="POST">
-        {{ form.name.label }} {{ form.name() }} </br>
-        {{ form.description.label }} {{ form.description }} </br>
-        {{ form.dueDate.label }} {{ form.dueDate }} </br>
-        {{ form.codeText.label }} {{ form.codeText }} </br>
-
+        {{ form.name.label }} {{ form.name(class='form-field') }} </br>
+        {{ form.description.label }} {{ form.description(class='form-field') }} </br>
+        {{ form.dueDate.label }} {{ form.dueDate(class='form-field') }} </br>
+        {{ form.codeText.label(class='file-select') }} {{ form.codeText() }} </br>
+        <div>test div</div>
+        {{ form.submit(class='form-field') }}
       </form>
     </div>
 
