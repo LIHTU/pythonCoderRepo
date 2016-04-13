@@ -56,10 +56,10 @@ class TestCaseForm(Form):
     hint = StringField("Enter a hint", validators=[Optional()])
 
 class ChallengeForm(Form):
-    name = StringField("Challenge Name", validators=[Required()])
-    description = TextField("Challenge Description", validators=[Required()])
-    dueDate = DateTimeField("Due Date", validators=[Required()])
+    name = StringField("Challenge Name", validators=[Optional()])
+    description = TextField("Challenge Description", validators=[Optional()])
+    dueDate = DateTimeField("Due Date", validators=[Optional()])
     codeText = FileField("Initial Code Text", validators=[Optional()])
-    # testCases = ??? PickleType?  maybe use formField; each case would be new instance testCase form class; how does FormField work?
+    # testCases = (will grab from session.localStorage...maybe)
     # course_id = SelectMultipleField("Choose a Course", validators=[Required()])
     submit = SubmitField("Submit")

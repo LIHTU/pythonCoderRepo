@@ -174,7 +174,19 @@ def dashboard():
 @login_required
 @check_confirmed
 def instructor_dash():
-    chalForm = ChallengeForm(request.form)
+    chalForm = ChallengeForm()
+    print request.form
+    print "chalForm.name = " + str(chalForm.name)
+    if chalForm.validate_on_submit():
+        print "I've been validated!"
+        challenge = Challenge(name = chalForm.name,
+        description = chalForm.description,
+        dueDate = chalForm.dueDate,
+        codeText = chalForm.codeText)
+
+        db.session.add(challenge)
+        db.session.commit()
+    print "not val"
 
     return render_template('user/instructor_dash.html', form=chalForm)
 
