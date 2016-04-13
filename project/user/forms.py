@@ -1,7 +1,7 @@
 # project/user/forms.py
 
 from flask_wtf import Form
-from wtforms import TextField, PasswordField, StringField, DateTimeField, FileField, SelectMultipleField, SubmitField
+from wtforms import TextField, PasswordField, StringField, DateField, FileField, SelectMultipleField, SubmitField
 from wtforms.validators import DataRequired, Email, Length, EqualTo, Required, Optional
 
 from project.models import User
@@ -58,8 +58,12 @@ class TestCaseForm(Form):
 class ChallengeForm(Form):
     name = StringField("Challenge Name", validators=[Optional()])
     description = TextField("Challenge Description", validators=[Optional()])
-    dueDate = DateTimeField("Due Date", validators=[Optional()])
+    dueDate = DateField("Due Date", validators=[Optional()])
     codeText = FileField("Initial Code Text", validators=[Optional()])
     # testCases = (will grab from session.localStorage...maybe)
     # course_id = SelectMultipleField("Choose a Course", validators=[Required()])
     submit = SubmitField("Submit")
+
+    def validate(self):
+        return True
+

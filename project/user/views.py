@@ -6,6 +6,7 @@
 #################
 
 import datetime
+import time
 
 from flask import render_template, Blueprint, url_for, \
     redirect, flash, request, jsonify, send_from_directory, make_response
@@ -13,7 +14,7 @@ from flask.ext.login import login_user, logout_user, \
     login_required, current_user
 # from flask.ext.bootstrap import Bootstrap
 
-from project.models import User, Assert, Submission
+from project.models import User, Assert, Submission, Challenge
 from project.email import send_email
 from project.token import generate_confirmation_token, confirm_token
 from project.decorators import check_confirmed
@@ -178,10 +179,12 @@ def instructor_dash():
     print "chalForm.name = " + str(chalForm.name)
     if chalForm.validate_on_submit():
         print "I've been validated!"
-        challenge = Challenge(name = chalForm.name,
-        description = chalForm.description,
-        dueDate = chalForm.dueDate,
-        codeText = chalForm.codeText)
+        #date_object = datetime.datetime.strptime(chalForm.dueDate.data, '%m/%d/%Y')
+        #print(str(chalForm.dueDate))
+        challenge = Challenge(name = chalForm.name.data,
+        description = chalForm.description.data,
+        dueDate = chalForm.dueDate.data,
+        codeText = chalForm.codeText.data)
 
         db.session.add(challenge)
         db.session.commit()
