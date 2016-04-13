@@ -188,7 +188,8 @@ def instructor_dash():
 
         db.session.add(challenge)
         db.session.commit()
-    print "not val"
+    else:
+        print "not val"
 
     return render_template('user/instructor_dash.html', form=chalForm)
 

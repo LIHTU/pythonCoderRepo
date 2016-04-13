@@ -100,9 +100,9 @@ class Challenge(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True)
-    description = db.Column(db.Text, unique=True, nullable=True)
+    description = db.Column(db.Text, nullable=True)
     dueDate = db.Column(db.DateTime, nullable=True)
-    codeText = db.Column(db.Text,nullable=True)
+    codeText = db.Column(db.Text, nullable=True)
     testCases = db.Column(db.PickleType)
     course_id = db.Column(db.Integer, db.ForeignKey('courses.id'))
 
